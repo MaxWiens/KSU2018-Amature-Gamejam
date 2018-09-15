@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Marshmallow.gd" type="Script" id=1]
+[ext_resource path="res://gj32/gj 32_0.png" type="Texture" id=2]
+[ext_resource path="res://gj32/gj 32_1.png" type="Texture" id=3]
+[ext_resource path="res://gj32/gj 32_2.png" type="Texture" id=4]
+[ext_resource path="res://gj32/gj 32_3.png" type="Texture" id=5]
+[ext_resource path="res://squish.wav" type="AudioStream" id=6]
+[ext_resource path="res://ouch/ouch_Animation 2_0.png" type="Texture" id=7]
+[ext_resource path="res://ouch/ouch_Animation 2_1.png" type="Texture" id=8]
+[ext_resource path="res://ouch/ouch_Animation 2_2.png" type="Texture" id=9]
+[ext_resource path="res://ouch/ouch_Animation 2_3.png" type="Texture" id=10]
+[ext_resource path="res://ouch/ouch_Animation 2_4.png" type="Texture" id=11]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+
+render_priority = 0
+blend_mode = 0
+light_mode = 0
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "squish",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "move",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 7, 12 )
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Marshmallow" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+hp = 3
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+material = SubResource( 3 )
+position = Vector2( -3.8147e-006, 0 )
+frames = SubResource( 1 )
+animation = "default"
+playing = true
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -3.8147e-006, 3.8735 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Label" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -19.0
+margin_top = -25.0
+margin_right = 21.0
+margin_bottom = -11.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "HP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 6 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="." index="4"]
+
+frames = SubResource( 4 )
+animation = "default"
+
+
